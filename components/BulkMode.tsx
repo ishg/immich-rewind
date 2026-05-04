@@ -9,12 +9,13 @@ import Lightbox from './Lightbox'
 interface Props {
   photos: Photo[]
   marked: Set<string>
+  immichUrl: string
   onToggleMark: (id: string) => void
   onSelectAll: () => void
   onDeleteRequest: () => void
 }
 
-export default function BulkMode({ photos, marked, onToggleMark, onSelectAll, onDeleteRequest }: Props) {
+export default function BulkMode({ photos, marked, immichUrl, onToggleMark, onSelectAll, onDeleteRequest }: Props) {
   const [lbIdx, setLbIdx] = useState<number | null>(null)
 
   if (photos.length === 0) {
@@ -131,6 +132,7 @@ export default function BulkMode({ photos, marked, onToggleMark, onSelectAll, on
         <Lightbox
           photo={photos[lbIdx]}
           isMarked={marked.has(photos[lbIdx].id)}
+          immichUrl={immichUrl}
           onToggleMark={() => onToggleMark(photos[lbIdx].id)}
           onClose={() => setLbIdx(null)}
           onPrev={lbIdx > 0 ? () => setLbIdx(n => n! - 1) : undefined}

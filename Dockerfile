@@ -7,9 +7,6 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# NEXT_PUBLIC_IMMICH_URL is inlined at build time — pass via --build-arg
-ARG NEXT_PUBLIC_IMMICH_URL
-ENV NEXT_PUBLIC_IMMICH_URL=$NEXT_PUBLIC_IMMICH_URL
 RUN npm run build
 
 FROM node:20-alpine AS runner

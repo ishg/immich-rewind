@@ -4,20 +4,19 @@ import { useEffect } from 'react'
 import { XMarkIcon, ChevronLeftIcon, ChevronRightIcon, TrashIcon, CheckIcon, ArrowTopRightOnSquareIcon, PlayIcon } from '@heroicons/react/24/solid'
 import { Photo } from '@/lib/types'
 
-const IMMICH_URL = (process.env.NEXT_PUBLIC_IMMICH_URL ?? '').replace(/\/$/, '')
-
 interface Props {
   photo: Photo
   isMarked: boolean
+  immichUrl: string
   onToggleMark: () => void
   onClose: () => void
   onPrev?: () => void
   onNext?: () => void
 }
 
-export default function Lightbox({ photo, isMarked, onToggleMark, onClose, onPrev, onNext }: Props) {
+export default function Lightbox({ photo, isMarked, immichUrl, onToggleMark, onClose, onPrev, onNext }: Props) {
   const isVideo = photo.type === 'VIDEO'
-  const immichLink = IMMICH_URL ? `${IMMICH_URL}/photos/${photo.id}` : null
+  const immichLink = immichUrl ? `${immichUrl}/photos/${photo.id}` : null
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {

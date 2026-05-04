@@ -26,6 +26,7 @@ export default function Home() {
   const [appError, setAppError] = useState<AppError | null>(null)
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [toast, setToast] = useState<ToastState | null>(null)
+  const [immichUrl, setImmichUrl] = useState('')
 
   const showToast = useCallback((msg: string, type: ToastType = 'default') => {
     setToast({ msg, type, key: Date.now() })
@@ -120,6 +121,7 @@ export default function Home() {
   }, [showToast])
 
   useEffect(() => {
+    fetch('/api/config').then(r => r.json()).then(d => setImmichUrl(d.immichUrl ?? '')).catch(() => {})
     loadPhotos(today.getMonth() + 1, today.getDate())
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -196,6 +198,7 @@ export default function Home() {
         <BulkMode
           photos={photos}
           marked={marked}
+          immichUrl={immichUrl}
           onToggleMark={toggleMark}
           onSelectAll={selectAll}
           onDeleteRequest={() => setConfirmOpen(true)}
