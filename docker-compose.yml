@@ -1,0 +1,12 @@
+services:
+  rewind:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_IMMICH_URL: ${NEXT_PUBLIC_IMMICH_URL}
+    ports:
+      - "3000:3000"
+    environment:
+      IMMICH_SERVER_URL: ${IMMICH_SERVER_URL}
+      IMMICH_API_KEY: ${IMMICH_API_KEY}
+    restart: unless-stopped
