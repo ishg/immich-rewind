@@ -1,5 +1,6 @@
 services:
   rewind:
+    container_name: immich-rewind
     build:
       context: .
     ports:
