@@ -42,7 +42,7 @@ export default function BulkMode({ photos, marked, immichUrl, onToggleMark, onSe
   return (
     <>
       {/* Sub-toolbar */}
-      <div className="flex items-center gap-3 px-5 py-2.5 bg-surface border-b border-border flex-wrap">
+      <div className="flex items-center gap-3 px-5 h-12 bg-surface border-b border-border">
         <button onClick={onSelectAll} className="text-xs font-mono text-accent hover:underline shrink-0">
           {allSelected ? 'Deselect All' : 'Select All'}
         </button>
@@ -107,7 +107,7 @@ export default function BulkMode({ photos, marked, immichUrl, onToggleMark, onSe
                         className={`w-6 h-6 rounded-full border-2 flex items-center justify-center backdrop-blur-sm transition-all
                           ${sel
                             ? 'bg-danger border-danger'
-                            : 'bg-black/40 border-white/50 opacity-0 group-hover:opacity-100'
+                            : 'bg-black/40 border-white/50 opacity-40 group-hover:opacity-100'
                           }`}
                       >
                         {sel && <CheckIcon className="w-3.5 h-3.5 text-white" />}

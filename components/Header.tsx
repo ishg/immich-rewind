@@ -1,6 +1,6 @@
 'use client'
 
-import { CalendarDaysIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -46,20 +46,20 @@ export default function Header({ month, day, onDayChange, photoCount, markedCoun
   }
 
   const selectCls = 'bg-transparent border-none outline-none text-fg font-mono text-sm cursor-pointer'
-  const arrowCls = 'w-6 h-6 flex items-center justify-center rounded-lg text-muted hover:text-fg hover:bg-white/10 transition-colors shrink-0'
+  const arrowCls = 'w-9 h-9 flex items-center justify-center rounded-lg text-fg hover:bg-white/10 active:bg-white/20 transition-colors shrink-0'
 
   return (
-    <header className="sticky top-0 z-50 bg-bg/85 backdrop-blur-xl border-b border-border h-14 px-5 flex items-center gap-3 sm:gap-4">
-      <div className="font-display text-xl text-accent shrink-0 leading-none">
-        Immich <span className="text-muted italic">· rewind</span>
+    <header className="sticky top-0 z-50 bg-bg/85 backdrop-blur-xl border-b border-border h-16 px-5 flex items-center gap-3 sm:gap-4 overflow-hidden">
+      <img src="/favicon.svg" alt="Rewind" className="block sm:hidden w-6 h-6 shrink-0 invert" />
+      <div className="hidden sm:block font-display text-xl text-accent shrink-0 leading-none">
+        immich <span className="text-muted italic">· rewind</span>
       </div>
 
       {/* Month + Day selects with arrow stepping */}
       <div className="flex items-center gap-1 bg-surface2 border border-border rounded-xl px-2 py-1.5 shrink-0">
         <button onClick={() => stepDay(-1)} className={arrowCls} title="Previous day">
-          <ChevronLeftIcon className="w-3.5 h-3.5" />
+          <ChevronLeftIcon className="w-5 h-5" strokeWidth={2.5} />
         </button>
-        <CalendarDaysIcon className="w-3.5 h-3.5 text-muted shrink-0 mx-0.5" />
         <select value={month} onChange={handleMonth} className={selectCls}>
           {MONTHS.map((name, i) => (
             <option key={i + 1} value={i + 1}>{name}</option>
@@ -72,7 +72,7 @@ export default function Header({ month, day, onDayChange, photoCount, markedCoun
           ))}
         </select>
         <button onClick={() => stepDay(1)} className={arrowCls} title="Next day">
-          <ChevronRightIcon className="w-3.5 h-3.5" />
+          <ChevronRightIcon className="w-5 h-5" strokeWidth={2.5} />
         </button>
       </div>
 
